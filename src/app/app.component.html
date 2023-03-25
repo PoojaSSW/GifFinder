@@ -1,0 +1,130 @@
+
+<div>
+  <div class="header-wrapper">
+    <div class="title-wrapper">
+      <div class="gif-title" [attr.aria-label]="title" role="heading">{{title}}</div>
+      <div class="header-logo"></div>
+      <form (ngSubmit)="onSubmit()">
+       <input class="input-search" type="text" placeholder="Search" name="myInput"  [(ngModel)]="inputValue"/>
+      </form>
+    </div>
+    <!-- Mobile specific code for showing the filter section -->
+    <div *ngIf="isMobile" class="filter-mobile-wrapper">
+      <span class="filter-icon" (click)="toggleDropdown()"></span>
+      <span class="filter-title" aria-label="Filter Ratings Section">Ratings</span>
+      <ul class="dropdown-menu dropdown-filters" [style.width]="'250px'" *ngIf="showDropdown">
+        <li *ngFor="let item of ratingsFilter">
+          <label aria-label="Checkbox Title">
+            <input type="checkbox" [(ngModel)]="item.isSelected" name="ratings" value={{item.name}} #ratings />
+            {{ item.name }}
+           </label>
+        </li>
+        <button class="sort-by-btn" [style.margin-bottom]="'20px'"aria-label="Apply Sort option" role="button"
+          (click)=" onClickRatingsApply()">
+          Apply
+        </button>
+      </ul>
+
+
+      <button (click)="toggleSortDropdown()" class="sort-by-btn" aria-label="Sort By Section" role="button">Sort by</button>
+      <ul class="dropdown-menu dropdown-sorting dropdown-filters" *ngIf="showSortDropdown">
+        <li *ngFor="let option of sortOpts">
+          <span class="sorting-label" aria-label="Radio Title">{{ option.label }}</span>
+          <label  class="filter-radio-label" aria-label="Radio Button Title">
+            <input type="radio" [(ngModel)]="sort" [value]="option.value" name="sortOpts"/> 
+            <span class="checkmark"></span>
+              </label>
+        </li>
+        <button class="sort-by-btn" aria-label="Apply Sort option" role="button"(click)="onSortChange()">Apply</button>
+      </ul>
+
+    </div>
+  </div>
+  <!-- Image gallery for gif icons -->
+  <div class="gallery-wrapper">
+    <!-- Filter section for filtering data -->
+    <div class="filter-wrapper">
+      <span class="filter-header" (click) = "toggleSideFilters()">toggle</span>
+      <div class="filter-header" *ngIf="showFilterSection">Filters</div>
+      <div class="left-filter-wrapper" *ngIf="showFilterSection">
+        <div class="left-filter">
+          <label aria-label="Ratings Label">Ratings</label>
+          <ul class="dropdown-menu">
+              <li *ngFor="let item of ratingsFilter">
+                  <label aria-label="Checkbox Title">
+                    <input type="checkbox" [(ngModel)]="item.isSelected" name="ratings" value={{item.name}} #ratings (change)="onCheckboxChange(ratings.checked, ratings.name, ratings.value)"/>
+                    {{ item.name }}
+                  </label>
+              </li>
+            </ul>
+          </div>
+          <div class="left-filter">
+            <label aria-label="Sort by Label">Sort by</label>
+            <ul class="dropdown-menu dropdown-sorting" >
+                <li *ngFor="let option of sortOpts">
+                  <span class="sorting-label" aria-label="Radio Button Title">{{ option.label }}</span>
+                  <label  class="filter-radio-label" aria-label="Checkmark for Radio Button">
+                    <input type="radio" [(ngModel)]="sort" [value]="option.value" name="sortOpts" (change)="onSortChange()"/> 
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- container showing gifs -->
+      <div *ngIf="giphyData.length === 0">
+        <div class="empty-container">No results found.
+          <div [style.font-size]="'15px'" [style.background]="'transparent'">Please try entering a different search criteria!</div></div>
+      </div>
+      <div class="container" *ngIf="giphyData.length > 0" [ngClass]="{'toggle-container': !showFilterSection}">
+        <ul class="image-gallery">
+          <li *ngFor="let g of giphyData">
+            <div class="image-container">
+              <div class="image-wrapper">
+                  <img [src]="g?.images?.original.url" alt="My Image" (click)="toggleModalVisibility(g)" role="img" aria-label="Giphy image"/>
+                  <div class="image-title" aria-label="Image Title">{{g.title}}</div>
+              </div>
+              <div class="gifphy-content">
+                <span class="username"></span>
+                <span class="user-website"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+   <!--  Modal showing the details of the gif -->
+    <app-modal [show]="showModal">
+      <div class="modal-wrapper" *ngIf="modalData">
+        <div class="modal-content">
+              <div class="modal-title">
+                <label aria-label="Modal Title">Title:</label><span>{{modalData?.title}}</span>
+              </div>
+              <div class="modal-title">
+                <div class="modal-title"><label>Rating:</label><span>{{modalData?.rating?.toUpperCase()}}</span></div>
+                 <div><label>Type:</label><span>{{modalData?.type?.toUpperCase()}}</span></div>
+              </div>
+             
+              <div *ngIf="modalData?.user" class="modal-title">
+               <div class="modal-title">
+                <label aria-label="Modal User">User:</label><span>{{modalData?.user?.username}}</span>
+              </div>
+              <div class="modal-title">
+                <div class="modal-title"><label>Website:</label><span>{{modalData?.user?.website_url}}</span></div>
+                <div><label aria-label="Modal URL">URL:</label><span>{{modalData?.user?.profile_url}}</span></div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="modal-gif">
+              <img [src]="modalData?.images?.original.url" alt="My Image" role="img" aria-label="Gif image on a modal">
+          </div>
+      </div>
+      <button class="btn-close-modal"(click)="close()" aria-label="Close Modal" role="button">Close</button>
+    </app-modal>
+</div>
+
+
+
+
