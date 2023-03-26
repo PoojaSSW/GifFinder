@@ -429,6 +429,27 @@ Filters for Desktiop */
 .toggle-container {
   margin: 9% 0 0 2%;
 }
+
+.footer {
+  height: 80px;
+  background: #3e3e3d;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer-banner {
+  text-align: center;
+  position: relative;
+  top: 21px;
+  background: transparent;
+  color: #e9e9e9;
+}
+
+.footer-banner span {
+  padding: 0 40px;
+  background: transparent;
+}
     
   /* For mobile phones: */
 @media only screen and (max-width: 768px) {
@@ -467,6 +488,10 @@ Filters for Desktiop */
   .empty-container {
     top: 14em;
     left: 19%;
+  }
+
+  .footer-banner span {
+    padding: 0 10px;
   }
 }
 /* For screens with width above 2500px */
