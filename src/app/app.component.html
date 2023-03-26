@@ -99,7 +99,7 @@
       </div>
     </div>
    <!--  Modal showing the details of the gif -->
-    <app-modal [show]="showModal">
+    <app-modal [show]="showModal"  *ngIf="!isMobile">
       <div class="modal-wrapper" *ngIf="modalData">
         <div class="modal-content">
               <div class="modal-title">
