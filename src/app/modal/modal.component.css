@@ -27,3 +27,12 @@
   max-height: 60vh;
   overflow: auto;
 }
+/* scrollbars are hidden, but scroling is still possible */
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

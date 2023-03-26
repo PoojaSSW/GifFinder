@@ -155,7 +155,7 @@ export class AppComponent {
   toggleSideFilters() {
     this.showFilterSection = !this.showFilterSection;
   }
-
+  
   close() {
     this.showModal = false;
   }

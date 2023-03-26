@@ -10,7 +10,7 @@
     </div>
     <!-- Mobile specific code for showing the filter section -->
     <div *ngIf="isMobile" class="filter-mobile-wrapper">
-      <span class="filter-icon" (click)="toggleDropdown()"></span>
+      <span class="filter-ratings-icon filter-icon" (click)="toggleDropdown()"></span>
       <span class="filter-title" aria-label="Filter Ratings Section">Ratings</span>
       <ul class="dropdown-menu dropdown-filters" [style.width]="'250px'" *ngIf="showDropdown">
         <li *ngFor="let item of ratingsFilter">
@@ -44,8 +44,12 @@
   <div class="gallery-wrapper">
     <!-- Filter section for filtering data -->
     <div class="filter-wrapper">
-      <span class="filter-header" (click) = "toggleSideFilters()">toggle</span>
-      <div class="filter-header" *ngIf="showFilterSection">Filters</div>
+        
+            <span class="filter-toggle-icon filter-icon" (click) = "toggleSideFilters()"></span>
+            <div class="filter-header" *ngIf="showFilterSection">Filters</div>
+        
+          <span class="hide-icon" *ngIf="showFilterSection" (click) ="toggleSideFilters()"></span>
+       
       <div class="left-filter-wrapper" *ngIf="showFilterSection">
         <div class="left-filter">
           <label aria-label="Ratings Label">Ratings</label>
