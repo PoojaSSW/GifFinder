@@ -11,9 +11,10 @@ Users can search for any kind of gifs by entering an input in the searchbar.
 ## Interactivity
 
 There are few aspects to this app:
+
 1 Search
 
-2 Pagination(More data loads as user scorlls through teh page reaching the bottom, default limit is 20)
+2 Pagination(More data loads as user scorlls through the page reaching the bottom, default limit is 20)
 
 3 Modal (click on any gif to view the details of the Gif (title, user, urls)
 
