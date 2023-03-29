@@ -29,13 +29,13 @@ There are few aspects to this app:
 
 By Default, on load the most trending gifs are shown. Users can enter any text they wish to see the GIF for.
 
-The app takes teh api and loads the relevant resulst on teh page.
+The app takes the api and loads the relevant results on the page.
 
-On left side, there are 2 set of filters defined for this app.
+On the left side, there are 2 set of filters defined for this app.
 
   1) Rating Filter: User can choose the GIF based on the Ratings. Examples include Y, G, PG, PG-13 and R
 
-  2) Sort based on Title(A-Z and Z-A) and Time(Oldest and Latest)
+  2) Sort based on Title(A-Z and Z-A) and Imported Gif Time(Oldest and Latest)
   
 
 ## Platform 
@@ -48,10 +48,10 @@ The Mobile interactivity works similar to web, except the modal portion.
 
 ## Wireframes
 
-The user experience flow has been skecthed before implementing this interface. A set of hand-skecthed mocks (for mobile and web) were crafted and are attached in the "skecthed-wireframes" folder.  
+The user experience flow has been sketched before implementing this interface. A set of hand-sketched diagrams (for mobile and web) were crafted and are attached in the "skecthed-wireframes" folder to give an overview of of the thought process that went into designing the app.
 
 ## Accessibility 
-Support for basic accessibility to define the elements when voice spoked. #Attributes used are aria-label, role
+Support for accessibility provided. It defines the elements when on voice over control. .Attributes used are aria-label, role.
 
 
 ## Tech-stack
